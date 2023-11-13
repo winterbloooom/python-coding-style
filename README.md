@@ -193,12 +193,11 @@ students: Dict[str, int] = {'eungi': 100, 'winterbloooom': 99}
 - [Black](https://black.readthedocs.io/en/stable/index.html) for Python code formatting
 - [isort](https://pycqa.github.io/isort/) for Python import sorting
 
-### 1. Install VSCode extensions
+### Method 1. VSCode extensions
 
 - [Black Formatter](https://marketplace.visualstudio.com/items?itemName=ms-python.black-formatter) (by Microsoft)
 - [isort](https://marketplace.visualstudio.com/items?itemName=ms-python.isort) (by Microsoft)
 
-### 2. Settings
  1. `command + shift + p`
  2. `Preferences: Open User Settings (JSON)`
  3. Insert code blow
@@ -210,6 +209,81 @@ students: Dict[str, int] = {'eungi': 100, 'winterbloooom': 99}
     "editor.formatOnSave": true,
 },
 "isort.args":["--profile", "black"],
+```
+
+### Method 2. Commandline
+
+👉 **Installation**
+```bash
+pip install black
+pip install isort
+```
+
+👉 **Usage 1: command**
+```bash
+black <file or path>
+isort <file or path>
+```
+
+👉 **Usage 2: with `pyproject.toml` configuration file**
+
+Make this file in the directory where the `.gitignore` exist.
+See Regex syntax for more flexible usage.
+
+```
+[tool.black]
+line-length = 100
+target-version = ['py39']
+exclude = '''
+  \.git
+  \DIR_OR_FILE_NAME
+'''
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+use_parentheses = true
+line_length = 100
+skip = [".gitignore"]
+```
+
+And then run commands below.
+```bash
+black --config pyproject.toml <PATH>
+isort --settings-path pyproject.toml <PATH>
+```
+
+### Pre-commit
+
+👉 **Installation**
+```bash
+pip install pre-commit
+```
+
+👉 **pre-commit configuration file**
+
+Make a file named `.pre-commit-config.yaml` in the directory where the `.gitignore` exist.
+```yaml
+repos:
+  - repo: https://github.com/PyCQA/isort
+    rev: 5.10.1
+    hooks:
+      - id: isort
+
+  - repo: https://github.com/ambv/black
+    rev: 22.6.0
+    hooks:
+      - id: black
+```
+
+👉 **Make pre-commit hook**
+```bash
+pre-commit install
+```
+
+👉 **Commit**
+```bash
+git commit -am "pre-commit test"
 ```
 
 <br><br><br>
