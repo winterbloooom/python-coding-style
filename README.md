@@ -6,10 +6,11 @@
         <li><a href="#documentation">Documentation</a></li>
         <li><a href="#indentations-and-spaces">Indentation & Spaces</a></li>
         <li><a href="#naming">Naming</a></li>
-        <li><a href="#references">References</a></li>
       </ul>
     </li>
+    <li><a href="#type-annotation">Type Annotation</a></li>
     <li><a href="#formatting-with-black-and-isort">Formatting with Black and isort</a></li>
+    <li><a href="#references">References</a></li>
   </ul>
 </details>
 
@@ -136,7 +137,7 @@ def func(a: int = 0) -> int:
 
 ### Naming
 - Package / module - `package_name` , `module_name`
-  - ❌ dashes(`-`)
+  - DO NOT use dashes(`-`)
 - Function - `function_name`
 - Variable
   - Global Constant - `GLOBAL_CONSTANT_NAME`
@@ -160,13 +161,32 @@ Here's a guideline from [Gudio](https://en.wikipedia.org/wiki/Guido_van_Rossum)
 |Function/Method Parameters|`lower_with_under`|                   |
 |Local Variables        |`lower_with_under`   |                   |
 
+<br><br><br>
 
+## Type Annotation
 
-### References
-- [Google Python Style Guide](https://google.github.io/styleguide/pyguide.html)
-- [Documenting Python Code: A Complete Guide](https://realpython.com/documenting-python-code/#basics-of-commenting-code)
+👉 `var: type = value`
 
+```py
+# Variables
+path: str = '/home/winterbloooom/foo.txt'
+paths: list = [path1, path2, path3]
 
+# Functions
+def show_paths(paths: list, max_num: int = 3) -> str:
+  return 'done'
+```
+
+👉 Using `typing` module
+
+```py
+from typing import List, Dict
+
+food: List[str] = ['banana', 'apple']
+students: Dict[str, int] = {'eungi': 100, 'winterbloooom': 99}
+```
+
+<br><br><br>
 
 ## Formatting with Black and isort
 
@@ -191,3 +211,11 @@ Here's a guideline from [Gudio](https://en.wikipedia.org/wiki/Guido_van_Rossum)
 },
 "isort.args":["--profile", "black"],
 ```
+
+<br><br><br>
+
+## References
+- [Google Python Style Guide](https://google.github.io/styleguide/pyguide.html)
+- [Documenting Python Code: A Complete Guide](https://realpython.com/documenting-python-code/#basics-of-commenting-code)
+- [Blog - 파이썬 타입 어노테이션/힌트](https://www.daleseo.com/python-type-annotations/)
+- [Blog - typing 모듈로 타입 표시하기](https://www.daleseo.com/python-typing/)
